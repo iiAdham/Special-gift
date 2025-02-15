@@ -1,24 +1,25 @@
 // script.js
 
+// Load audio files
+var noSound = new Audio('no-sound.mp3'); // Sound when "No" is clicked
+var yesSound = new Audio('yes-sound.mp3'); // Sound when "Yes" is clicked
+
 // Function to handle button click events
 function selectOption(option) {
-    // Check which option was clicked
     if (option === 'yes') {
-        // Flash rainbow colors
+        yesSound.play(); // Play "Yes" sound
         flashRainbowColors(function() {
-            document.getElementById('question').style.display = 'none'; // Hide the question
-            displayCatHeart(); // Display the cat-heart.gif
+            document.getElementById('question').style.display = 'none';
+            displayCatHeart();
         });
     } else if (option === 'no') {
-        // Change text on the "No" button to "You sure?"
+        noSound.play(); // Play "No" sound
         document.getElementById('no-button').innerText = 'SURE?'; 
-        // Increase font size of "Yes" button
         var yesButton = document.getElementById('yes-button');
         var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
-        var newSize = parseFloat(currentFontSize) * 2; // Increase font size by  * 2px
+        var newSize = parseFloat(currentFontSize) * 2;
         yesButton.style.fontSize = newSize + 'px';
     } else {
-        // If neither "Yes" nor "No" was clicked, show an alert message
         alert('Invalid option!');
     }
 }
